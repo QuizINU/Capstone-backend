@@ -21,4 +21,8 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
+    public void deleteNoteById(int id) {
+        noteRepository.deleteById(id);
+    }
+
 }
