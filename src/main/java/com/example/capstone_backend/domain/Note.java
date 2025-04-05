@@ -1,10 +1,11 @@
 package com.example.capstone_backend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +26,9 @@ public class Note {
     private String correctAnswer;
 
     private boolean isCorrect;
+
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Memo> memos = new ArrayList<>();
+
 }
